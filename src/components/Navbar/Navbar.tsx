@@ -13,7 +13,7 @@ const Navbar = () => {
                 <NavLink className={styles.navLink} to={""}>Contact Us</NavLink>
             </nav>
             <div className={styles.navBtns}>
-                <Button onClick={() => navigate("")} >Login</Button>
+                <Button onClick={() => navigate("/login")} >Login</Button>
                 <Button onClick={() => navigate("/register")} variant="secondary">Register</Button>
             </div>
         </header>

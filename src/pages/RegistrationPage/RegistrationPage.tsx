@@ -21,7 +21,7 @@ const RegistrationPage = () => {
         try {
             await registerUser(data).unwrap();
             snack.success("Registered successfully");
-            navigate("/"); //temporary navigation
+            navigate("/login"); //temporary navigation
         } catch (e: any) {
             snack.error(e.data.error.message || "Something went wrong")
         }
@@ -29,6 +29,7 @@ const RegistrationPage = () => {
 
     return (
         <div className={styles.RegistrationPage}>
+            <Button className={styles.backBtn}>Back</Button>
             <Form methods={methods} onSubmit={onSubmit}>
                 <span className={styles.formTitle}>Registration</span>
                 <FormInput<RegistrationData>
@@ -51,9 +52,9 @@ const RegistrationPage = () => {
 
                 <div className={styles.formBtnContainer}>
                     <Button type="submit" disabled={isLoading}>{isLoading ? "Registering.." : "Register"}</Button>
-                    <Button variant="secondary" onClick={() => navigate(-1)}>Cancel</Button>
+                    <Button variant="secondary" onClick={() => navigate("/")}>Cancel</Button>
                 </div>
-                <p className={styles.formMsg}>Already registered? <NavLink to={"/"}>login here</NavLink></p>
+                <p className={styles.formMsg}>Already registered? <NavLink to={"/login"}>login here</NavLink></p>
             </Form>
 
         </div>
