@@ -2,8 +2,18 @@ import Navbar from "../../components/Navbar/Navbar";
 import { MULTICLASS } from "../../utility/multiClass";
 import styles from "./LandingPage.module.scss";
 import LeftBG from "../../assets/leftSection_BG.svg"
+import { useAppSelector } from "../../redux/store/hooks";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+    const navigate = useNavigate();
+    const user = useAppSelector(state => state.auth.user);
+    useEffect(() => {
+        if(user){
+            navigate("/dashboard")
+        }
+    }, [user])
     return (
         <div className={styles.LandingPage}>
             <Navbar />
