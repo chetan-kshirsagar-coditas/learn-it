@@ -4,8 +4,7 @@ import LandingPage from "../pages/LandingPage/LandingPage";
 import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
-import Guard from "./Guard";
-import { Roles } from "../types/Roles";
+import AddUserPage from "../pages/AddUserPage/AddUserPage";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +25,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard",
-                element: <DashboardLayout/>
+                element: <DashboardLayout />,
+                children: [
+                    {
+                        path: "addUser",
+                        element: <AddUserPage />
+                    }
+                ]
             }
         ]
     }

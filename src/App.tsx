@@ -5,7 +5,6 @@ import { useEffect } from "react"
 import { useGetMeQuery } from "./redux/slices/authApiSlice"
 import { useAppDispatch } from "./redux/store/hooks"
 import { restoreSession } from "./redux/slices/authSlice"
-import Loader from "./components/Loader/Loader"
 const App = () => {
 
   const { data, isFetching } = useGetMeQuery();
