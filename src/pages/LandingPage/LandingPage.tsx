@@ -2,8 +2,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import { MULTICLASS } from "../../utility/multiClass";
 import styles from "./LandingPage.module.scss";
 import LeftBG from "../../assets/leftSection_BG.svg"
-import Button from "../../components/Button/Button";
-import { snack } from "../../components/Snackbar/hooks/useSnackbarStore";
 
 const LandingPage = () => {
     return (

@@ -10,7 +10,7 @@ export interface BaseFieldProps<T extends FieldValues>{
 
 
 export interface FormProps extends PropsWithChildren{
-    onSubmit: () => void,
+    onSubmit: (data: any) => void,
     methods: UseFormReturn<any, any, any>
     className?: string
 }

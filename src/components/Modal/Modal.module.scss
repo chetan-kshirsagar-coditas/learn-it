@@ -4,11 +4,12 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: #cccccc6e;
+    background-color: #cccccc6d;
     display: grid;
     place-items: center;
 
     .modal{
         padding: 1rem;
+        background-color: white;
     }
 }
