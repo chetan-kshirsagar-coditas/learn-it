@@ -7,8 +7,11 @@ import { useLazyGetMeQuery } from "../../redux/slices/authApiSlice";
 
 const AuthGuard = () => {
   const navigate = useNavigate();
+
   const user = useAppSelector(state => state.auth.user);
+  
   const token = localStorage.getItem("token");
+  
   const dispatch = useAppDispatch();
 
   const [getMe, { isFetching, isLoading }] = useLazyGetMeQuery();

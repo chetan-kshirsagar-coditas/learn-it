@@ -1,5 +1,5 @@
 import type { CourseData } from "../../pages/CoursesPage/components/AddCoursePage/AddCoursePage.types";
-import type { AddCourseResponse, GetCoursesResponse } from "../types";
+import type { AddCourseResponse, GetCoursesResponse, GetInstructorsResponse } from "../types";
 import { apiSlice } from "./apiSlice";
 
 const coursesApiSlice = apiSlice.injectEndpoints({
@@ -17,8 +17,13 @@ const coursesApiSlice = apiSlice.injectEndpoints({
         body: data
       }),
       invalidatesTags: ["Courses"]
+    }),
+    getInstructors: builder.query<GetInstructorsResponse, void>({
+      query: () => ({
+          url: "instructors"
+      })
     })
   })
 })
 
-export const { useGetCoursesQuery, useAddCourseMutation } = coursesApiSlice;
+export const { useGetCoursesQuery, useAddCourseMutation, useGetInstructorsQuery } = coursesApiSlice;

@@ -1,4 +1,5 @@
 import type { User } from "../../App.types";
+import type { AddUserData } from "../../pages/AddUserPage/AddUser.types";
 import type { LoginData } from "../../pages/LoginPage/LoginPage.types";
 import type { RegistrationData } from "../../pages/RegistrationPage/RegistationPage.types";
 import type { GetMeResponse, LoginResponse } from "../types";
@@ -24,8 +25,20 @@ const authApiSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: "auth/me",
             })
+        }),
+        addUser: builder.mutation<any, AddUserData>({
+            query: (data) => ({
+                url: "auth/users",
+                method: "POST",
+                body: data
+            })
         })
     })
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation, useGetMeQuery, useLazyGetMeQuery } = authApiSlice;
+export const {
+    useRegisterUserMutation,
+    useLoginUserMutation,
+    useLazyGetMeQuery,
+    useAddUserMutation
+} = authApiSlice;

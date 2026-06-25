@@ -1,5 +1,5 @@
-import type { FormFieldProps } from "./FormField.types"
-import styles from "./FormField.module.scss";
+import type { FormFieldProps } from "./FormFieldWrapper.types"
+import styles from "./FormFieldWrapper.module.scss";
 
 const FormField = ({ label, children, error, htmlFor }: FormFieldProps) => {
     return (
