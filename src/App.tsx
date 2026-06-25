@@ -1,12 +1,12 @@
-import { Outlet } from "react-router-dom"
 import styles from "./App.module.scss"
 import SnackbarContainer from "./components/Snackbar/SnackbarContainer"
-const App = () => {
+import type { PropsWithChildren } from "react"
+const App = ({ children }: PropsWithChildren) => {
 
   return (
     <div className={styles.app}>
       <SnackbarContainer />
-      <Outlet />
+      {children}
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { Controller, useFormContext, type FieldValues } from "react-hook-form"
 import type { FormInputProps } from "./FormInput.types"
 import FormField from "../FormFieldWrapper/FormFieldWrapper";
-import styles from "./FormInput.module.scss";
 import Input from "../../../components/Input/Input";
 
 const FormInput = <T extends FieldValues>({ label, name, disabled, placeholder, type = "text" }: FormInputProps<T>) => {

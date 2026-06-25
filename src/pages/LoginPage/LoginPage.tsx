@@ -25,6 +25,7 @@ const LoginPage = () => {
     try {
       const response = await loginUser(data).unwrap();
       localStorage.setItem("token", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
       snack.success("Logged in successfully");
       navigate("/dashboardRedirector");
     } catch (e: any) {

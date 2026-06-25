@@ -3,7 +3,7 @@
   border-radius: 4px;
   background-position: center;
   width: 15rem;
-  padding: 1.75rem 1rem;
+  padding: 1rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -19,5 +19,8 @@
 
   .courseTutor {
     font-weight: 500;
+  }
+  .enrollBtn{
+    margin-top: 0.75rem;
   }
 }
