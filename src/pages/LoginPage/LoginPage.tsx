@@ -7,19 +7,12 @@ import { ZLoginData } from "./LoginPage.schema";
 import FormInput from "../../Form/FormInput/FormInput";
 import Button from "../../components/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useGetMeQuery, useLoginUserMutation } from "../../redux/slices/authApiSlice";
+import { useLoginUserMutation } from "../../redux/slices/authApiSlice";
 import { snack } from "../../components/Snackbar/hooks/useSnackbarStore";
-import { useAppDispatch } from "../../redux/store/hooks";
-import { login, restoreSession } from "../../redux/slices/authSlice";
-import { jwtDecode } from "jwt-decode";
-import type { User } from "../../App.types";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
   const [loginUser, { isLoading }] = useLoginUserMutation();
-
 
   const defaultValues: LoginData = {
     email: "",
@@ -31,9 +24,9 @@ const LoginPage = () => {
   const onSubmit = async (data: LoginData) => {
     try {
       const response = await loginUser(data).unwrap();
-      dispatch(login({ token: response.accessToken }));
+      localStorage.setItem("token", response.accessToken);
       snack.success("Logged in successfully");
-      navigate("/dashboard"); //temporary navigation
+      navigate("/dashboardRedirector");
     } catch (e: any) {
       snack.error(e.data.error.message || "Something went wrong")
     }
