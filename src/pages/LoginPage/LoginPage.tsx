@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import Form from "../../Form/Form";
+import Form from "../../components/Form/Form";
 import styles from "./LoginPage.module.scss";
 import type { LoginData } from "./LoginPage.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZLoginData } from "./LoginPage.schema";
-import FormInput from "../../Form/FormInput/FormInput";
+import FormInput from "../../components/Form/FormInput/FormInput";
 import Button from "../../components/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/slices/authApiSlice";

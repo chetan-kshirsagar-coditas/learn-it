@@ -11,7 +11,6 @@ import CoursesPage from "../pages/CoursesPage/CoursesPage";
 
 export const router = createBrowserRouter([
     {
-        path: "/",
         element: <App />,
         children: [
             {

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import Form from "../../Form/Form";
+import Form from "../../components/Form/Form";
 import styles from "./RegistrationPage.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZRegistrationData } from "./RegistrationPage.schema";
 import type { RegistrationData } from "./RegistationPage.types";
-import FormInput from "../../Form/FormInput/FormInput";
+import FormInput from "../../components/Form/FormInput/FormInput";
 import Button from "../../components/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { snack } from "../../components/Snackbar/hooks/useSnackbarStore";
@@ -29,7 +29,6 @@ const RegistrationPage = () => {
 
     return (
         <div className={styles.RegistrationPage}>
-            <Button className={styles.backBtn}>Back</Button>
             <Form methods={methods} onSubmit={onSubmit}>
                 <span className={styles.formTitle}>Registration</span>
                 <FormInput<RegistrationData>
