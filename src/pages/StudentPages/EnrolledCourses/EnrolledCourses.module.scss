@@ -1,0 +1,32 @@
+.EnrolledCoursesPage {
+  min-height: 100%; 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .enrolledCard {
+    width: 23%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.75)), url(../../../assets/card_BG.svg);
+    border: thin solid;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .viewBtn {
+      align-self: start;
+    }
+
+    .title {
+      font-size: 1.25em;
+    }
+
+    .desc{
+      font-size: 0.9em;
+    }
+
+    .tutor {
+      font-weight: 500;
+    }
+  }
+}

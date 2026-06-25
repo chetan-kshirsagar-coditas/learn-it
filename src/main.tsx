@@ -6,12 +6,15 @@ import { router } from './router/router.tsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store/store.ts'
 import Loader from './components/Loader/Loader.tsx'
+import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <Suspense fallback={<Loader/>}>
-        <RouterProvider router={router} />
+      <Suspense fallback={<Loader />}>
+        <App>
+          <RouterProvider router={router} />
+        </App>
       </Suspense>
     </Provider>
   </StrictMode>,

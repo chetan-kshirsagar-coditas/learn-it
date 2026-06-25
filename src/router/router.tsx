@@ -1,59 +1,60 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import LandingPage from "../pages/LandingPage/LandingPage";
-import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import AddUserPage from "../pages/AddUserPage/AddUserPage";
 import AuthGuard from "../components/AuthGuard/AuthGuard";
-import DashboardRedirector from "../components/DashboardRedirector/DashboardRedirector";
-import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
-import CoursesPage from "../pages/CoursesPage/CoursesPage";
 import RoleGuard from "../hoc/RoleGuard";
 import { ROLES } from "../types/Roles";
-import EnrolledCourses from "../pages/StudentPages/EnrolledCourses/EnrolledCourses";
+import { lazy } from "react";
+const LandingPage = lazy(() => import("../pages/LandingPage/LandingPage"))
+const RegistrationPage = lazy(() => import("../pages/RegistrationPage/RegistrationPage"))
+const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"))
+const AddUserPage = lazy(() => import("../pages/AddUserPage/AddUserPage"))
+const DashboardRedirector = lazy(() => import("../components/DashboardRedirector/DashboardRedirector"))
+const DashboardLayout = lazy(() => import("../layouts/DashboardLayout/DashboardLayout"))
+const CoursesPage = lazy(() => import("../pages/CoursesPage/CoursesPage"))
+const EnrolledCourses = lazy(() => import("../pages/StudentPages/EnrolledCourses/EnrolledCourses"))
+const UnauthorizedPage = lazy(() => import("../pages/UnauthorizedPage/UnauthorizedPage"))
 
 export const router = createBrowserRouter([
+
     {
-        element: <App />,
+        path: "/",
+        element: <LandingPage />
+    },
+    {
+        path: "/register",
+        element: <RegistrationPage />
+    },
+    {
+        path: "/login",
+        element: <LoginPage />
+    },
+    {
+        element: <AuthGuard />,
         children: [
             {
-                path: "/",
-                element: <LandingPage />
+                path: "/dashboardRedirector",
+                element: <DashboardRedirector />,
             },
             {
-                path: "/register",
-                element: <RegistrationPage />
-            },
-            {
-                path: "/login",
-                element: <LoginPage />
-            },
-            {
-                element: <AuthGuard />,
+                element: <DashboardLayout />,
                 children: [
                     {
-                        path: "/dashboardRedirector",
-                        element: <DashboardRedirector />,
+                        path: "adduser",
+                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
                     },
                     {
-                        element: <DashboardLayout />,
-                        children: [
-                            {
-                                path: "adduser",
-                                element: <RoleGuard allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
-                            },
-                            {
-                                path: "courses",
-                                element: <RoleGuard allowed={[ROLES.ADMIN, ROLES.STUDENT, ROLES.INSTRUCTOR]}><CoursesPage /></RoleGuard>
-                            },
-                            {
-                                path: "me/courses",
-                                element: <RoleGuard allowed={[ROLES.STUDENT]}><EnrolledCourses /></RoleGuard>
-                            },
-                        ]
-                    }
+                        path: "courses",
+                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.ADMIN, ROLES.STUDENT, ROLES.INSTRUCTOR]}><CoursesPage /></RoleGuard>
+                    },
+                    {
+                        path: "me/courses",
+                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.STUDENT]}><EnrolledCourses /></RoleGuard>
+                    },
                 ]
             }
         ]
+    },
+    {
+        path: "/unauthorized",
+        element: <UnauthorizedPage />
     }
 ]);

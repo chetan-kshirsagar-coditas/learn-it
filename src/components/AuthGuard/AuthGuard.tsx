@@ -3,35 +3,56 @@ import { useAppDispatch, useAppSelector } from "../../redux/store/hooks"
 import Loader from "../Loader/Loader";
 import { useEffect } from "react";
 import { restoreSession } from "../../redux/slices/authSlice";
-import { useLazyGetMeQuery } from "../../redux/slices/authApiSlice";
+import { useLazyGetMeQuery, useRefreshSessionMutation } from "../../redux/slices/authApiSlice";
 
 const AuthGuard = () => {
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.auth.user);
   
   const token = localStorage.getItem("token");
-  
-  const dispatch = useAppDispatch();
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const [getMe, { isFetching, isLoading }] = useLazyGetMeQuery();
+  const [refreshSession] = useRefreshSessionMutation();
 
   useEffect(() => {
     const fetchUserData = async () => {
+      if (!token || user) return;
+
       try {
-        if (token && !user) {
-          const response = await getMe().unwrap();
-          if (response) {
-            dispatch(restoreSession(response));
-          }
+        const response = await getMe().unwrap();
+        if (response) {
+          dispatch(restoreSession(response));
         }
-      } catch (e) {
-        navigate("/login");
+      } catch (e: any) {
+        if (refreshToken) {
+          try {
+            const response = await refreshSession({ refreshToken }).unwrap();
+            localStorage.setItem("token", response.accessToken);
+            localStorage.setItem("refreshToken", response.refreshToken);
+            
+            const retryResponse = await getMe().unwrap();
+            if (retryResponse) {
+              dispatch(restoreSession(retryResponse));
+            }
+          } catch (e: any) {
+            clearLocalStorage();
+          }
+        } else {
+          clearLocalStorage();
+        }
       }
     };
 
+    const clearLocalStorage = () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
+      navigate("/login");
+    };
+
     fetchUserData();
-  }, [ user, getMe]);
+  }, [user, getMe]);
 
   if (!token) {
     return <Navigate to="/login" replace />;
@@ -44,13 +65,4 @@ const AuthGuard = () => {
   return <Outlet />;
 };
 
-
-export default AuthGuard
-
-
-
-
-
-
-
-
+export default AuthGuard;

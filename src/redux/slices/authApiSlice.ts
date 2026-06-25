@@ -2,7 +2,7 @@ import type { User } from "../../App.types";
 import type { AddUserData } from "../../pages/AddUserPage/AddUser.types";
 import type { LoginData } from "../../pages/LoginPage/LoginPage.types";
 import type { RegistrationData } from "../../pages/RegistrationPage/RegistationPage.types";
-import type { GetMeResponse, LoginResponse } from "../types";
+import type { GetMeResponse, LoginResponse, RefreshSessionResponse } from "../types";
 import { apiSlice } from "./apiSlice";
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -32,6 +32,13 @@ const authApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data
             })
+        }),
+        refreshSession: builder.mutation<RefreshSessionResponse, { refreshToken: string }>({
+            query: (data) => ({
+                url: "auth/refresh",
+                method: "POST",
+                body: data
+            })
         })
     })
 })
@@ -40,5 +47,6 @@ export const {
     useRegisterUserMutation,
     useLoginUserMutation,
     useLazyGetMeQuery,
-    useAddUserMutation
+    useAddUserMutation,
+    useRefreshSessionMutation
 } = authApiSlice;

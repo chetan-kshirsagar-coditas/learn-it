@@ -48,7 +48,11 @@
   }
 
   .rightPanel {
+    width: 85%;
     flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
 
     .dashboardNav {
       display: flex;
@@ -64,6 +68,7 @@
 
     .outletDiv {
       padding: 1rem;
+      flex-grow: 1;
     }
   }
 }
