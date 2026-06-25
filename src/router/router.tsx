@@ -8,6 +8,9 @@ import AuthGuard from "../components/AuthGuard/AuthGuard";
 import DashboardRedirector from "../components/DashboardRedirector/DashboardRedirector";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import CoursesPage from "../pages/CoursesPage/CoursesPage";
+import RoleGuard from "../hoc/RoleGuard";
+import { ROLES } from "../types/Roles";
+import EnrolledCourses from "../pages/StudentPages/EnrolledCourses/EnrolledCourses";
 
 export const router = createBrowserRouter([
     {
@@ -37,11 +40,15 @@ export const router = createBrowserRouter([
                         children: [
                             {
                                 path: "adduser",
-                                element: <AddUserPage />
+                                element: <RoleGuard allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
                             },
                             {
                                 path: "courses",
-                                element: <CoursesPage />
+                                element: <RoleGuard allowed={[ROLES.ADMIN, ROLES.STUDENT, ROLES.INSTRUCTOR]}><CoursesPage /></RoleGuard>
+                            },
+                            {
+                                path: "me/courses",
+                                element: <RoleGuard allowed={[ROLES.STUDENT]}><EnrolledCourses /></RoleGuard>
                             },
                         ]
                     }

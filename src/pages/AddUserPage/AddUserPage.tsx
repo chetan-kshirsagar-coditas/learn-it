@@ -25,7 +25,7 @@ const AddUserPage = () => {
 
   const onSubmit = async (data: AddUserData) => {
     try{
-      const response  = await addUser(data).unwrap();
+      await addUser(data).unwrap();
       snack.success("User added successfully");
     }catch(e: any){
       snack.error(e.data.error.message || "Something went wrong")

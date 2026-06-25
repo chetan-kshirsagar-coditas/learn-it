@@ -15,10 +15,10 @@ const DashboardRedirector = () => {
         navigate("/courses");
         break;
       case ROLES.STUDENT:
-        navigate("/adduser");
+        navigate("/courses");
         break;
       case ROLES.INSTRUCTOR:
-        navigate("/adduser");
+        navigate("/courses");
     }
 
   }, [user]);

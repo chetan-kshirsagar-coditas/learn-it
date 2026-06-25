@@ -10,7 +10,6 @@ import styles from "./AddCoursesPage.module.scss"
 import { useAddCourseMutation, useGetInstructorsQuery } from "../../../../redux/slices/coursesApiSlice"
 import { snack } from "../../../../components/Snackbar/hooks/useSnackbarStore"
 import FormSelect from "../../../../components/Form/FormSelect/FormSelect"
-import type { Options } from "sass"
 import type { Option } from "../../../../components/Form/FormSelect/FormSelect.types"
 
 const AddCoursePage = ({ onClose }: AddCoursePageProps) => {

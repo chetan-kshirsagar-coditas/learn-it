@@ -20,10 +20,20 @@ const coursesApiSlice = apiSlice.injectEndpoints({
     }),
     getInstructors: builder.query<GetInstructorsResponse, void>({
       query: () => ({
-          url: "instructors"
+        url: "instructors"
+      })
+    }),
+    getMyCourses: builder.query<GetCoursesResponse, void>({
+      query: () => ({
+        url: "me/courses",
       })
     })
   })
 })
 
-export const { useGetCoursesQuery, useAddCourseMutation, useGetInstructorsQuery } = coursesApiSlice;
+export const {
+  useGetCoursesQuery,
+  useAddCourseMutation,
+  useGetInstructorsQuery,
+  useGetMyCoursesQuery
+} = coursesApiSlice;
