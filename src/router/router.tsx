@@ -7,6 +7,7 @@ import AddUserPage from "../pages/AddUserPage/AddUserPage";
 import AuthGuard from "../components/AuthGuard/AuthGuard";
 import DashboardRedirector from "../components/DashboardRedirector/DashboardRedirector";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
+import CoursesPage from "../pages/CoursesPage/CoursesPage";
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
                             {
                                 path: "adduser",
                                 element: <AddUserPage />
-                            }
+                            },
+                            {
+                                path: "courses",
+                                element: <CoursesPage />
+                            },
                         ]
                     }
                 ]

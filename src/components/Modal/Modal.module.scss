@@ -9,7 +9,9 @@
     place-items: center;
 
     .modal{
-        padding: 1rem;
+        padding: 0.25rem;
         background-color: white;
+        box-shadow: 0 0 8px 2px #ccc;
+        border-radius: 4px;
     }
 }

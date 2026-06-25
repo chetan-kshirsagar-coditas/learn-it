@@ -1,0 +1,16 @@
+.CoursesPage {
+  // background-color: aqua;
+
+  .coursesNav {
+    display: flex;
+    justify-content: end;
+  }
+
+  .coursesContainer {
+    // background-color: black;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
