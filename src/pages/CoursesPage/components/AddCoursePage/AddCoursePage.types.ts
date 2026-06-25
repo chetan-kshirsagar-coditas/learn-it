@@ -5,4 +5,4 @@ export interface AddCoursePageProps {
   onClose: () => void;
 }
 
-export type CourseData = z.infer<typeof ZCourseData>;
+export type CourseData = z.input<typeof ZCourseData>;

@@ -20,18 +20,18 @@ const CoursesPage = () => {
       <div className={styles.coursesNav}>
         <Button onClick={() => setModal({ type: "ADD_COURSE" })}>+ Add</Button>
       </div>
-      <div className={styles.coursesContainer}>
-            {
-              coursesData?.map(course => 
-              <CourseCard 
-              key={course.title} 
-              title={course.title}
-              description={course.description}
-              capacity={course.capacity}
-              instructor={course.instructor.name!}
-              />)
-            }
-      </div>
+        <div className={styles.coursesContainer}>
+              {
+                coursesData?.map(course => 
+                <CourseCard 
+                key={course.title} 
+                title={course.title}
+                description={course.description}
+                capacity={course.capacity}
+                instructor={course.instructor.name!}
+                />)
+              }
+        </div>
     </div>
   )
 }

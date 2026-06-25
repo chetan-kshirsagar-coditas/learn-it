@@ -13,3 +13,4 @@ export interface AuthState {
 }
 
 export type GetCoursesResponse = (CourseData & { instructor: Partial<User> })[]
+export type AddCourseResponse =  CourseData & { instructor: Pick<User, "id" | "name"> }

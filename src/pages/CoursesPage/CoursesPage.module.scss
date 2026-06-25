@@ -7,11 +7,10 @@
   }
 
   .coursesContainer {
+    // background-color: black;
     padding: 1rem;
-    // background-color: aqua;
-
-    
-
-
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }

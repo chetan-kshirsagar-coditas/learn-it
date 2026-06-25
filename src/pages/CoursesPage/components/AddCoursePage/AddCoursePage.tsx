@@ -7,6 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ZCourseData } from "./AddCoursePage.schema"
 import FormInput from "../../../../Form/FormInput/FormInput"
 import styles from "./AddCoursesPage.module.scss"
+import { useAddCourseMutation } from "../../../../redux/slices/coursesApiSlice"
+import { snack } from "../../../../components/Snackbar/hooks/useSnackbarStore"
 
 const AddCoursePage = ({ onClose }: AddCoursePageProps) => {
   const defaultValues: CourseData = {
@@ -18,8 +20,16 @@ const AddCoursePage = ({ onClose }: AddCoursePageProps) => {
   }
   const methods = useForm<CourseData>({ defaultValues, resolver: zodResolver(ZCourseData) });
 
-  const onSubmit = (data: CourseData) => {
-    console.log(data);
+  const [addCourse, { isLoading }] = useAddCourseMutation();
+
+  const onSubmit = async (data: CourseData) => {
+    try {
+      await addCourse(data).unwrap();
+      snack.success("Course added successfully");
+      onClose();
+    } catch (e: any) {
+      snack.error(e.data.error.message || "Something went wrong");
+    }
   }
 
   return (
@@ -46,10 +56,10 @@ const AddCoursePage = ({ onClose }: AddCoursePageProps) => {
             label="Capacity"
             name="capacity"
             placeholder="Enter capacity here"
+            type="number"
           />
-
           <div className={styles.formBtnContainer}>
-            <Button type="submit">Add</Button>
+            <Button type="submit">{isLoading ? "Adding..." : "Add"}</Button>
             <Button type="button" variant="secondary" onClick={onClose}>Cancel</Button>
           </div>
         </Form>
