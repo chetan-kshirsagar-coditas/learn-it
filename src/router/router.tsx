@@ -3,8 +3,10 @@ import App from "../App";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
-import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import AddUserPage from "../pages/AddUserPage/AddUserPage";
+import AuthGuard from "../components/AuthGuard/AuthGuard";
+import DashboardRedirector from "../components/DashboardRedirector/DashboardRedirector";
+import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 
 export const router = createBrowserRouter([
     {
@@ -12,7 +14,7 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "",
+                path: "/",
                 element: <LandingPage />
             },
             {
@@ -24,15 +26,23 @@ export const router = createBrowserRouter([
                 element: <LoginPage />
             },
             {
-                path: "/dashboard",
-                element: <DashboardLayout />,
+                element: <AuthGuard />,
                 children: [
                     {
-                        path: "addUser",
-                        element: <AddUserPage />
+                        path: "/dashboardRedirector",
+                        element: <DashboardRedirector />,
+                    },
+                    {
+                        element: <DashboardLayout />,
+                        children: [
+                            {
+                                path: "adduser",
+                                element: <AddUserPage />
+                            }
+                        ]
                     }
                 ]
             }
         ]
     }
-])
+]);

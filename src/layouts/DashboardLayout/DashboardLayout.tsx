@@ -1,12 +1,10 @@
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store/hooks"
-import { useGetMeQuery } from "../../redux/slices/authApiSlice";
-import { logout, restoreSession } from "../../redux/slices/authSlice";
-import Loader from "../../components/Loader/Loader";
+import { logout } from "../../redux/slices/authSlice";
 import styles from "./DashboardLayout.module.scss";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { NAV_ITEMS_BY_ROLE } from "./constants/NavItems";
+import { v4 } from "uuid";
 
 const DashboardLayout = () => {
 
@@ -14,18 +12,8 @@ const DashboardLayout = () => {
   const user = useAppSelector(state => state.auth.user);
   const dispatch = useAppDispatch();
 
-  const { data, isFetching, isLoading } = useGetMeQuery();
-
-  useEffect(() => {
-    if (data) {
-      dispatch(restoreSession(data));
-    }
-  }, [data, isFetching, isLoading]);
-
-  if (isFetching) return <Loader />;
-
   const navItems = NAV_ITEMS_BY_ROLE[(user?.role ?? "") as keyof typeof NAV_ITEMS_BY_ROLE] ?? []
-  console.log(navItems);
+
   return (
     <div className={styles.DashboardLayout}>
       <div className={styles.leftPanel}>
@@ -34,7 +22,7 @@ const DashboardLayout = () => {
           <div className={styles.leftMenu}>
               {
                 navItems.map(navItem => 
-                  <NavLink className={styles.navs} to={navItem.to}>{navItem.label}</NavLink>
+                  <NavLink key={v4()} className={styles.navs} to={navItem.to}>{navItem.label}</NavLink>
                 )
               }
           </div>
