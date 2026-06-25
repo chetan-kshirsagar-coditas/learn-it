@@ -1,6 +1,8 @@
 .DashboardLayout {
   min-height: 100vh;
   display: flex;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../../assets/landingPage_BG.svg);
+
 
 
   .leftPanel {

@@ -12,7 +12,7 @@ const DashboardRedirector = () => {
 
     switch(user.role){
       case Roles.ADMIN:
-        navigate("/adduser");
+        navigate("/courses");
         break;
       case Roles.STUDENT:
         navigate("/adduser");

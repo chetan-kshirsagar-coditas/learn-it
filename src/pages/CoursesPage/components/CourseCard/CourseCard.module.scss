@@ -1,0 +1,25 @@
+.courseCard {
+  // background-color: coral;
+  // background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(../../assets/landingPage_BG.svg);
+  // background-color: white;
+  border: thin solid;
+  background-position: center;
+  width: 20%;
+  padding: 1.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 0 8px 2px #ccc;
+
+  .courseTitle {
+    font-size: 1.5em;
+  }
+
+  .courseDesc {
+    font-size: 0.85em;
+  }
+
+  .courseTutor {
+    font-weight: 500;
+  }
+}
