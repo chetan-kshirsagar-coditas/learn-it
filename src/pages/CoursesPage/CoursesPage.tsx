@@ -16,6 +16,7 @@ const CoursesPage = () => {
   const { data: coursesData, isFetching, isLoading } = useGetCoursesQuery();
 
   if (isFetching || isLoading) return <Loader />;
+
   return (
     <div className={styles.CoursesPage}>
 

@@ -2,7 +2,7 @@ import type { User } from "../../App.types";
 import type { AddUserData } from "../../pages/AddUserPage/AddUser.types";
 import type { LoginData } from "../../pages/LoginPage/LoginPage.types";
 import type { RegistrationData } from "../../pages/RegistrationPage/RegistationPage.types";
-import type { GetMeResponse, LoginResponse, RefreshSessionResponse } from "../types";
+import type { GetMeResponse, GetStudentsResponse, LoginResponse, RefreshSessionResponse } from "../types";
 import { apiSlice } from "./apiSlice";
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -39,6 +39,11 @@ const authApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data
             })
+        }),
+        getStudents: builder.query<GetStudentsResponse, void>({
+            query: () => ({
+                url: "students"
+            })
         })
     })
 })
@@ -48,5 +53,6 @@ export const {
     useLoginUserMutation,
     useLazyGetMeQuery,
     useAddUserMutation,
-    useRefreshSessionMutation
+    useRefreshSessionMutation,
+    useGetStudentsQuery
 } = authApiSlice;

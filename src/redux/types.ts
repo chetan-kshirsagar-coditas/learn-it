@@ -34,3 +34,26 @@ export type RefreshSessionResponse = {
     refreshToken: string
 };
 
+
+export type StudentDetails = Pick<User, "id" | "name" | "email"> &
+{
+    enrollments: {
+        id: string
+        course: Pick<CourseData, "title" | "isElective"> & { id: string }
+    }[],
+    submissions: {
+        "id": string,
+        "status": "GRADED" | "NOTGRADED",
+        "grade": number,
+        "feedback": string,
+        "assignment": {
+            "id": string,
+            "title": string,
+            "dueAt": string,
+            "courseId": string
+        }
+    }[]
+}
+
+export type GetStudentsResponse = StudentDetails[]
+

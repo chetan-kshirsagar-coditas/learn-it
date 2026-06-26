@@ -3,6 +3,7 @@ import AuthGuard from "../components/AuthGuard/AuthGuard";
 import RoleGuard from "../hoc/RoleGuard";
 import { ROLES } from "../types/Roles";
 import { lazy } from "react";
+import StudentsPage from "../pages/AdminPages/StudentsPage/StudentsPage";
 const LandingPage = lazy(() => import("../pages/LandingPage/LandingPage"))
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage/RegistrationPage"))
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"))
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         element: <LoginPage />
     },
     {
+        path: "/unauthorized",
+        element: <UnauthorizedPage />
+    },
+    {
         element: <AuthGuard />,
         children: [
             {
@@ -39,7 +44,11 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "adduser",
-                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
+                        element: <RoleGuard isRouterGuard allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
+                    },
+                    {
+                        path: "students",
+                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.ADMIN]}><StudentsPage /></RoleGuard>
                     },
                     {
                         path: "courses",
@@ -53,8 +62,5 @@ export const router = createBrowserRouter([
             }
         ]
     },
-    {
-        path: "/unauthorized",
-        element: <UnauthorizedPage />
-    }
+
 ]);

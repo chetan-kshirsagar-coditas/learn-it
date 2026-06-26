@@ -12,9 +12,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <Suspense fallback={<Loader />}>
-        <App>
-          <RouterProvider router={router} />
-        </App>
+        <App/>
       </Suspense>
     </Provider>
   </StrictMode>,
