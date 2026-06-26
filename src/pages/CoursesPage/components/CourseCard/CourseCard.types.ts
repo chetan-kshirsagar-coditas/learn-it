@@ -1,5 +1,3 @@
-import type { ROLES } from "../../../../types/Roles";
-
 export interface CourseCardProps {
   id: string
   title: string,

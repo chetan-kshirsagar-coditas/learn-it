@@ -31,7 +31,8 @@ const authApiSlice = apiSlice.injectEndpoints({
                 url: "auth/users",
                 method: "POST",
                 body: data
-            })
+            }),
+            invalidatesTags: ["Students"]
         }),
         refreshSession: builder.mutation<RefreshSessionResponse, { refreshToken: string }>({
             query: (data) => ({
@@ -43,7 +44,8 @@ const authApiSlice = apiSlice.injectEndpoints({
         getStudents: builder.query<GetStudentsResponse, void>({
             query: () => ({
                 url: "students"
-            })
+            }),
+            providesTags: ["Students"]
         })
     })
 })

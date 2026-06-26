@@ -55,7 +55,7 @@ const AuthGuard = () => {
   }, [user, getMe]);
 
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" />;
   }
 
   if (isLoading || isFetching || (token && !user)) {
