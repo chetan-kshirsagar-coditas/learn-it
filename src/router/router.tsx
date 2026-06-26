@@ -29,6 +29,10 @@ export const router = createBrowserRouter([
         element: <LoginPage />
     },
     {
+        path: "/unauthorized",
+        element: <UnauthorizedPage />
+    },
+    {
         element: <AuthGuard />,
         children: [
             {
@@ -40,7 +44,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "adduser",
-                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
+                        element: <RoleGuard isRouterGuard allowed={[ROLES.ADMIN]}><AddUserPage /></RoleGuard>
                     },
                     {
                         path: "students",
@@ -58,8 +62,5 @@ export const router = createBrowserRouter([
             }
         ]
     },
-    {
-        path: "/unauthorized",
-        element: <UnauthorizedPage />
-    }
+
 ]);
