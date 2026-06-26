@@ -5,7 +5,7 @@ import styles from "./StudentsDetailsCard.module.scss";
 
 const StudentDetailsCard = ({ data, onClose }: StudentDetailsCardProps) => {
   return (
-    <Modal>
+    <Modal closeModal={onClose}>
           <div className={styles.studentDetailsCard}>
 
             <span className={styles.name}><i className="fa-regular fa-circle-user"></i>{data.name}</span>

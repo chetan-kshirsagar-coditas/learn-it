@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "me/courses",
-                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.STUDENT]}><EnrolledCourses /></RoleGuard>
+                        element: <RoleGuard isRouterGuard={true} allowed={[ROLES.STUDENT, ROLES.INSTRUCTOR]}><EnrolledCourses /></RoleGuard>
                     },
                 ]
             }

@@ -38,7 +38,7 @@ const AddCoursePage = ({ onClose }: AddCoursePageProps) => {
   }
 
   return (
-    <Modal>
+    <Modal closeModal={onClose}>
       <Form methods={methods} onSubmit={onSubmit}>
         <span className={styles.formTitle}>Add Course</span>
         <FormInput<CourseData>

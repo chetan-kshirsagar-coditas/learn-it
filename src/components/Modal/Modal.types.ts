@@ -1,3 +1,5 @@
 import type { PropsWithChildren } from "react";
 
-export interface ModalProps extends PropsWithChildren { }
+export interface ModalProps extends PropsWithChildren {
+  closeModal: () => void;
+ }

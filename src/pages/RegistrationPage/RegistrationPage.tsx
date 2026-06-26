@@ -9,6 +9,7 @@ import Button from "../../components/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { snack } from "../../components/Snackbar/hooks/useSnackbarStore";
 import { useRegisterUserMutation } from "../../redux/slices/authApiSlice";
+import { useEffect } from "react";
 
 const RegistrationPage = () => {
     const navigate = useNavigate();
@@ -26,6 +27,13 @@ const RegistrationPage = () => {
             snack.error(e.data.error.message || "Something went wrong")
         }
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            navigate("/dashboardRedirector")
+        }
+    }, [])
 
     return (
         <div className={styles.RegistrationPage}>

@@ -9,6 +9,7 @@ import Button from "../../components/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/slices/authApiSlice";
 import { snack } from "../../components/Snackbar/hooks/useSnackbarStore";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -20,6 +21,13 @@ const LoginPage = () => {
   }
 
   const methods = useForm<LoginData>({ defaultValues, resolver: zodResolver(ZLoginData) });
+
+  useEffect(() => {
+          const token = localStorage.getItem("token");
+          if(token){
+              navigate("/dashboardRedirector")
+          }
+      }, [])
 
   const onSubmit = async (data: LoginData) => {
     try {
